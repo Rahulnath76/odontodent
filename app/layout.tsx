@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "OdontoVoice - AI-powered Dental Assistant",
+  title: "OdontoDent - AI-powered Dental Assistant",
   description: "Enhance your dental practice with AI-driven voice assistance and documentation.",
 };
 
@@ -27,7 +27,7 @@ export default function RootLayout({
     <ClerkProvider>
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}
       >
         {children}
       </body>
