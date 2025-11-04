@@ -1,0 +1,31 @@
+"use server";
+
+import { prisma } from "@/lib/prisma";
+
+export const getAppointments = async () => {
+    try{
+        const appointments = await prisma.appointment.findMany({
+            orderBy: { createdAt: "desc" },
+            include: {
+                user: {
+                    select: {
+                        firstName: true,
+                        lastName: true,
+                        email: true
+                    }
+                },
+                doctor: {
+                    select: {
+                        name: true,
+                        imageUrl: true,
+                    }
+                }
+            }
+        });
+
+        return appointments;
+    }
+    catch (error) {
+        console.log()
+    }
+}
