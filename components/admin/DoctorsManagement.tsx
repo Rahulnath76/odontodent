@@ -7,21 +7,29 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
-import { EditIcon, MailIcon, PhoneIcon, PlusIcon, Stethoscope } from "lucide-react";
+import { Edit, EditIcon, MailIcon, PhoneIcon, PlusIcon, Stethoscope } from "lucide-react";
 import { Button } from "../ui/button";
 import Image from "next/image";
 import { Badge } from "../ui/badge";
 import AddDoctorDialog from "./AddDoctorDialog";
+import { Doctor } from "@prisma/client";
+import EditDoctorDialog from "./EditDoctorDialog";
 
 const DoctorsManagement = () => {
   const { data: doctors = [] } = useGetDoctors();
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
-  const [seletedDoctor, setSelectedDoctor] = useState(null);
+  const [seletedDoctor, setSelectedDoctor] = useState<Doctor | null>(null);
 
-  const handleEditDoctor = () => {};
+  const handleEditDoctor = (doctor: Doctor) => {
+    setSelectedDoctor(doctor);
+    setIsEditDialogOpen(true);
+  };
 
-  const handleCloseEditDialog = () => {};
+  const handleCloseEditDialog = () => {
+    setIsEditDialogOpen(false);
+    setSelectedDoctor(null);
+  };
 
   return (
     <>
@@ -113,6 +121,13 @@ const DoctorsManagement = () => {
       </Card>
 
       <AddDoctorDialog isOpen={isAddDialogOpen} onClose={() => setIsAddDialogOpen(false)} />
+
+        <EditDoctorDialog
+          isOpen={isEditDialogOpen}
+           onClose={handleCloseEditDialog}
+           doctor={seletedDoctor}
+           key={seletedDoctor?.id}
+        />
     </>
   );
 };
