@@ -18,7 +18,7 @@ function DoctorInfo({ doctorId }: { doctorId: string }) {
       />
       <div>
         <h3 className="font-medium">{doctor.name}</h3>
-        <p className="text-sm text-muted-foreground">{doctor.speciality || "General Dentistry"}</p>
+        <p className="text-sm text-muted-foreground">{doctor.specialty || "General Dentistry"}</p>
       </div>
     </div>
   );
