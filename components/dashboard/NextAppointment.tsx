@@ -1,9 +1,8 @@
-import { getUserAppointment } from '@/lib/actions/appointments'
-import { parseISO, isSameDay, isAfter, format } from 'date-fns';
-import React from 'react'
-import NoAppointMents from './NoAppointMents';
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import { getUserAppointment } from '@/lib/actions/appointments';
+import { format, isAfter, isSameDay, parseISO } from 'date-fns';
 import { CalendarSearchIcon, ClockIcon, UserIcon } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import NoAppointMents from './NoAppointMents';
 
 export const NextAppointment = async () => {
   const appointments = await getUserAppointment();
